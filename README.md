@@ -2,6 +2,10 @@
 
 A HTTP spec compliant caching layer for `blackadder`.
 
+## Warnings
+
+The cached response only contains the simplified `blackadder` request and response so as not to waste cache space.
+
 ## No Cache
 
 If the response specifically includes a `no-cache` directive it will not be cached.
