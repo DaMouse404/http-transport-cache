@@ -29,7 +29,7 @@ function createCache() {
 function requestWithCache(catbox) {
   return blackadder
     .createClient()
-    .use(cache(catbox))
+    .use(cache.maxAge(catbox))
     .get('http://www.example.com/')
     .asBody()
 }
@@ -42,7 +42,7 @@ describe('Blackadder cache', () => {
   it('sets the cache up ready for use', () => {
     const catbox = createCache();
 
-    cache(catbox);
+    cache.maxAge(catbox);
 
     assert(catbox.isReady());
   });
