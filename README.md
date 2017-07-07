@@ -1,10 +1,10 @@
-# Blackadder Cache
+# HTTP Transport Cache
 
-A HTTP spec compliant caching layer for `blackadder`.
+A HTTP spec compliant caching layer for `http-transport`.
 
 ## Warnings
 
-The cached response only contains the simplified `blackadder` request and response so as not to waste cache space.
+The cached response only contains the simplified `http-transport` request and response so as not to waste cache space.
 
 ## No Cache
 
@@ -26,6 +26,6 @@ In order to ensure a resilient service even during errors, http responses can in
 
 The cache uses `catbox` to provide a simple pluggable interface, this supports segmenting the cache as well as IDs, thus the following segments are used:
 
-* blackadder:{version}:response - Basic response from a call cached for the duration of the `max-age` value key on just the URL of the response.
-* blackadder:{version}:staleResponse - Stale response from a called cached for the `stale-if-error` value keyed on just the URL of the response.
-* blackadder:{version}:body - Response bodies stored here keyed on the headers sent combined with URL so as to allow `Vary` directives for different bodies.
+* http-transport:{version}:response - Basic response from a call cached for the duration of the `max-age` value key on just the URL of the response.
+* http-transport:{version}:staleResponse - Stale response from a called cached for the `stale-if-error` value keyed on just the URL of the response.
+* http-transport:{version}:body - Response bodies stored here keyed on the headers sent combined with URL so as to allow `Vary` directives for different bodies.

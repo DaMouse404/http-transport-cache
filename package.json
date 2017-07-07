@@ -1,5 +1,5 @@
 {
-  "name": "blackadder-cache",
+  "name": "http-transport-cache",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

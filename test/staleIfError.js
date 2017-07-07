@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('assert');
-const blackadder = require('http-transport');
+const httpTransport = require('http-transport');
 const Catbox = require('catbox');
 const Memory = require('catbox-memory');
 const nock = require('nock');
@@ -16,7 +16,7 @@ const defaultHeaders = {
   'cache-control': 'max-age=60,stale-if-error=7200'
 };
 const defaultResponse = 'I am a string!';
-const bodySegment = { segment: 'blackadder:1.0.0:stale', id: 'http://www.example.com/' };
+const bodySegment = { segment: 'http-transport:1.0.0:stale', id: 'http://www.example.com/' };
 
 nock.disableNetConnect();
 
@@ -28,7 +28,7 @@ function createCache() {
 }
 
 function requestWithCache(catbox) {
-  return blackadder
+  return httpTransport
     .createClient()
     .use(cache.staleIfError(catbox))
     .use(toError())
@@ -98,7 +98,7 @@ describe('Stale-If-Error', () => {
   });
 
   it('returns cached response if available when error response is returned', () => {
-    const cachedResponse = 'blackadder';
+    const cachedResponse = 'http-transport';
     const cache = createCache();
 
     api.get('/').reply(500, defaultResponse, {});
@@ -114,7 +114,7 @@ describe('Stale-If-Error', () => {
   });
 
   it('returns the original error if nothing in cache', () => {
-    const cachedResponse = 'blackadder';
+    const cachedResponse = 'http-transport';
     const cache = createCache();
 
     api.get('/').reply(500, defaultResponse, {});

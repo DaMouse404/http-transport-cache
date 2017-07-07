@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('assert');
-const blackadder = require('http-transport');
+const httpTransport = require('http-transport');
 const Catbox = require('catbox');
 const Memory = require('catbox-memory');
 const nock = require('nock');
@@ -15,7 +15,7 @@ const defaultHeaders = {
   'cache-control': 'max-age=60'
 };
 const defaultResponse = 'I am a string!';
-const bodySegment = { segment: 'blackadder:1.0.0:body', id: 'http://www.example.com/' };
+const bodySegment = { segment: 'http-transport:1.0.0:body', id: 'http://www.example.com/' };
 
 nock.disableNetConnect();
 
@@ -27,7 +27,7 @@ function createCache() {
 }
 
 function requestWithCache(catbox) {
-  return blackadder
+  return httpTransport
     .createClient()
     .use(cache.maxAge(catbox))
     .get('http://www.example.com/')
@@ -85,7 +85,7 @@ describe('Max-Age', () => {
   });
 
   it('returns cached response if available', () => {
-    const cachedResponse = 'blackadder';
+    const cachedResponse = 'http-transport';
     const cache = createCache();
 
     api.get('/').reply(200, defaultResponse, { headers: { 'cache-control': 'max-age=0' }});
